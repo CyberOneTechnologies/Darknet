@@ -14,21 +14,13 @@
 #░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░#
 ####################################################################################
 
-import datetime
-import os
+from app.utils.input_manager import get_user_input
+from app.utils.file_manager import generate_filename, save_results
 from app.scrapers.tor_scraper import TorScraper
 
 def main():
-    # Prompt user for input
-    first_name = input("First name: ")
-    last_name = input("Last name: ")
-    phone_number = input("Phone number (numbers only): ")
-    country = input("Country: ")
-    email_address = input("Email address: ")
-    address = input("Address: ")
-    city = input("City: ")
-    state = input("State: ")
-    zip_code = input("ZIP code: ")
+    # Get user input
+    first_name, last_name, phone_number, country, email_address, address, city, state, zip_code = get_user_input()
 
     # Create a TorScraper instance
     tor_scraper = TorScraper()
@@ -36,15 +28,11 @@ def main():
     # Perform darknet search
     results = tor_scraper.search(first_name, last_name, phone_number, country, email_address, address, city, state, zip_code)
 
-    # Get current date/time
-    now = datetime.datetime.now()
-
     # Generate output file name
-    filename = f"darknetquery.{first_name}.{last_name}.{now.strftime('%Y%m%d%H%M%S')}.txt"
+    filename = generate_filename(first_name, last_name)
 
     # Save results to output file
-    with open(filename, "w") as file:
-        file.write(results)
+    save_results(filename, results)
 
     print(f"Results saved to {filename}")
 
