@@ -4,75 +4,44 @@ This project provides a Docker containerized Python application for open source 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-**1. Install Docker on Kali Linux:**
+1. **Docker**
 
-Docker is not included by default on Kali Linux. You can install it by using the following commands in your terminal.
+2. **Git**
 
-First, update your existing list of packages:
-```
-sudo apt-get update
-```
+The script `install_docker.sh` is provided in the root directory to install Docker and Git. If these are not installed on your Kali Linux system, you can run this script to install them. 
 
-Next, install a few prerequisite packages which let apt use packages over HTTPS:
+**- Before running the script, you may need to make it executable with the following command:**
 ```
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+chmod +x install_docker.sh
 ```
 
-Then add the GPG key for the official Docker repository to your system:
+**- Then, you can run the script with this command:**
 ```
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-```
-
-Add the Docker repository to APT sources:
-```
-sudo echo "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" > /etc/apt/sources.list.d/docker.list
+./install_docker.sh
 ```
 
-Update the package database with the Docker packages from the newly added repo:
-```
-sudo apt-get update
-```
+# Installation
 
-Finally, install Docker:
-```
-sudo apt-get install docker-ce
-```
-
-**2. Install Git on Kali Linux:**
-
-Git is usually included by default on Kali Linux, but if it is not, you can install it by using the following command in your terminal:
-```
-sudo apt-get install git
-```
-
-After installing Docker and Git, you can proceed with the rest of the instructions for cloning the repository and running the Docker container.
-
-### Installation
-
-- Clone the repository to your local machine:
-
+**- Clone the repository to your local machine:**
 ```
 git clone https://github.com/CyberOneTechnologies/Darknet.git
 ```
 
-- Navigate to the Darknet directory:
-
+**-Navigate to the Darknet directory:**
 ```
 cd Darknet
 ```
 
-- Build the Docker image:
-
+**-Build the Docker image:**
 ```
 docker build -t darknet .
 ```
 
-- Run the Docker container:
-
+**-Run the Docker container:**
 ```
 docker run -it darknet
 ```
